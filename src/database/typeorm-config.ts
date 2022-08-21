@@ -1,4 +1,4 @@
-export const typeormConfig: any = {
+const typeormConfig: any = {
   type: 'postgres',
   host: process.env.POSTGRESQL_HOST || 'localhost',
   url: process.env.POSTGRESQL_URL,
@@ -6,29 +6,13 @@ export const typeormConfig: any = {
   username: process.env.POSTGRESQL_USERNAME || 'postgres',
   password: process.env.POSTGRESQL_PASSWORD || 'password',
   database: process.env.POSTGRESQL_DATABASE,
-  entities: [
-    `${
-      process.env.NODE_ENV === 'production' ? 'dist' : 'src'
-    }/**/*.entity.{js,ts}`,
-  ],
-  subscribers: [
-    `${
-      process.env.NODE_ENV === 'production' ? 'dist' : 'src'
-    }/**/*.subscriber.{js,ts}`,
-  ],
-  migrations: [
-    `${
-      process.env.NODE_ENV === 'production' ? 'dist' : 'src'
-    }/database/migrations/*.{js,ts}`,
-  ],
-  seeds: [
-    `${
-      process.env.NODE_ENV === 'production' ? 'dist' : 'src'
-    }/database/seeds/*.{js,ts}`,
-  ],
-  factories: [
-    `${
-      process.env.NODE_ENV === 'production' ? 'dist' : 'src'
-    }/database/factories/*.{js,ts}`,
-  ],
+  entities: [`${__dirname}/../**/*.entity.{js,ts}`],
+  subscribers: [`${__dirname}/../**/*.subscriber.{js,ts}`],
+  migrations: [`${__dirname}/migrations/*.{js,ts}`],
+  factories: [`${__dirname}/factories/*.{js,ts}`],
+  cli: {
+    migrationsDir: __dirname + '/migrations',
+  },
 };
+
+export default typeormConfig;

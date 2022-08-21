@@ -9,7 +9,7 @@ services:
     env_file:
       - ./.env
     environment:
-      POSTGRESQL_HOST: postgres
+      POSTGRESQL_HOST: database
       POSTGRESQL_USERNAME: postgres
       POSTGRESQL_PASSWORD: password
       POSTGRESQL_DATABASE: test
@@ -21,11 +21,11 @@ services:
     networks:
       - backend
     links:
-      - postgres
+      - database
     depends_on:
-      - postgres
+      - database
 
-  postgres:
+  database:
     image: postgres:11-alpine
     restart: always
     environment:
