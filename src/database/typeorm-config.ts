@@ -10,6 +10,7 @@ const typeormConfig: any = {
   subscribers: [`${__dirname}/../**/*.subscriber.{js,ts}`],
   migrations: [`${__dirname}/migrations/*.{js,ts}`],
   factories: [`${__dirname}/factories/*.{js,ts}`],
+  seeds: [`${__dirname}/seeds/*.{js,ts}`],
   cli: {
     migrationsDir: __dirname + '/migrations',
   },

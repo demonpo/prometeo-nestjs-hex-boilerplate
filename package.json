@@ -20,14 +20,17 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli",
-    "db:migration": "npm run typeorm -- migration:run -d src/database/datasource.ts"
+    "db:migration": "npm run typeorm -- migration:run -d src/database/datasource.ts",
+    "db:seed": "ts-node -r tsconfig-paths/register ./commands/seed.ts --config src/database/typeorm-config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
+    "commander": "^9.4.0",
     "faker": "^6.6.6",
+    "glob": "^8.0.3",
     "node-emoji": "^1.11.0",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
@@ -36,11 +39,14 @@
     "typeorm": "^0.3.7"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.4.0",
+    "@jorgebodega/typeorm-seeding": "^5.0.1",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
     "@types/express": "^4.17.13",
     "@types/faker": "^6.6.9",
+    "@types/glob": "^7.2.0",
     "@types/jest": "28.1.4",
     "@types/node": "^16.0.0",
     "@types/supertest": "^2.0.11",
