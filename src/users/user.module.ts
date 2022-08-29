@@ -1,17 +1,19 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './controllers/user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
-import { UserRepository } from './interfaces/repositories/user-repository';
-import { ImplUserRepository } from './repositories/impl-user-repository';
+import { UserEntity } from './infra/typeorm/entities/user.entity';
+import { UserRepository } from './domain/contracts/repositories/user-repository';
+import { ImplUserRepository } from './infra/typeorm/repositories/impl-user-repository';
+import { UsersService } from './domain/services/users.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([UserEntity])],
   providers: [
     {
       provide: UserRepository, // Used as a symbol
       useClass: ImplUserRepository,
     },
+    UsersService,
   ],
   controllers: [UserController],
   exports: [TypeOrmModule],

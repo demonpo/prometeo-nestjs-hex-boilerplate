@@ -1,11 +1,11 @@
 import { Controller, Get, Inject } from '@nestjs/common';
-import { UserRepository } from '../interfaces/repositories/user-repository';
+import { UsersService } from '../domain/services/users.service';
 
 @Controller()
 export class UserController {
   constructor(
-    @Inject(UserRepository)
-    private readonly userRepository: UserRepository,
+    @Inject(UsersService)
+    private readonly usersService: UsersService,
   ) {}
 
   @Get('/test')
@@ -16,7 +16,7 @@ export class UserController {
   @Get('/users')
   async findAll() {
     return {
-      data: await this.userRepository.find(),
+      data: await this.usersService.find(),
     };
   }
 }
