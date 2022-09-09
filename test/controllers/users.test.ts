@@ -21,6 +21,7 @@ describe('UsersController', () => {
     // Config to set up Database connection and to initialize migrations and seeders
     await datasource.runMigrations();
     await useDataSource(datasource);
+
     await useSeeders(UsersCreate);
   });
 
