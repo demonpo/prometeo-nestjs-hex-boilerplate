@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { errorHandler } from '@prometeo-dev/error-handler-library/dist/middlewares';
+import { ExceptionHandlerFilter } from './shared/infra/filters';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(errorHandler());
+  app.useGlobalFilters(new ExceptionHandlerFilter());
   await app.listen(3000);
 }
 bootstrap();
